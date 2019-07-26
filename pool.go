@@ -118,6 +118,7 @@ func NewTimingPool(size, expiry int) (*Pool, error) {
 	p := &Pool{
 		capacity:       int32(size),
 		expiryDuration: time.Duration(expiry) * time.Second,
+		workers: make([]*Worker,0,int32(size)),
 	}
 	p.cond = sync.NewCond(&p.lock)
 	go p.periodicallyPurge()
