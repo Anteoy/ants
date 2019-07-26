@@ -125,7 +125,7 @@ func NewTimingPool(size, expiry int, preAlloc bool) (*Pool, error) {
 		p = &Pool{
 			capacity:       int32(size),
 			expiryDuration: time.Duration(expiry) * time.Second,
-			workers:        make([]*Worker, 0, int32(size)),
+			workers:        make([]*Worker, 0, size),
 		}
 	} else {
 		p = &Pool{
