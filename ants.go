@@ -33,7 +33,7 @@ const (
 	DEFAULT_ANTS_POOL_SIZE = math.MaxInt32
 
 	// DEFAULT_CLEAN_INTERVAL_TIME is the interval time to clean up goroutines.
-	DEFAULT_CLEAN_INTERVAL_TIME = 60
+	DEFAULT_CLEAN_INTERVAL_TIME = 1
 
 	// CLOSED represents that the pool is closed.
 	CLOSED = 1
