@@ -23,6 +23,7 @@
 package ants
 
 import (
+	"fmt"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -75,6 +76,7 @@ func (p *Pool) periodicallyPurge() {
 		}
 		currentTime := time.Now()
 		p.lock.Lock()
+		s := time.Now()
 		idleWorkers := p.workers
 		n := len(idleWorkers)
 		i := 0
@@ -90,7 +92,7 @@ func (p *Pool) periodicallyPurge() {
 			p.workers = idleWorkers[:m]
 		}
 		p.lock.Unlock()
-
+		fmt.Printf("pool clean cost: %d nm\n", time.Now().Sub(s).Nanoseconds())
 		// Notify obsolete workers to stop.
 		// This notification must be outside the p.lock, since w.task
 		// may be blocking and may consume a lot of time if many workers
